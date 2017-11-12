@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CurrencyValueReportingApplicationServices.DAL.FileDAL
 {
-    //TODO: Implement config object to autonomize this class from bootstrap object
+    //TODO: Implement config object to make this class independent of bootstrap object
     public class FileCurrencyDataWriter : ICurrencyDataWriter
     {
         public void CleanAll(string currencyName)

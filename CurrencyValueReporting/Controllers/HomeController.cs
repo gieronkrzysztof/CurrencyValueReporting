@@ -13,10 +13,7 @@ namespace CurrencyValueReporting.Controllers
     {
         public ActionResult Index()
         {
-            var service = new CurrencyService();
-            var chfData = service.GetAllCurrencyData(CurrencyType.chf);
-
-            return View(chfData);
+            return View();
         }
 
         public ActionResult CurrencyViewer()
