@@ -11,37 +11,12 @@ namespace CurrencyValueReporting.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
-        {
-
-        }
-
-        public ActionResult GetCurrencyValues(string currencyName)
-        {
-            var service = new CurrencyService();
-            var currencyType = (CurrencyType)Enum.Parse(typeof(CurrencyType), currencyName);
-
-            var currencyData = service.GetAllCurrencyData(currencyType);
-            return View("CurrencyViewer", currencyData);
-        }
-        
-
         public ActionResult Index()
         {
             var service = new CurrencyService();
             var chfData = service.GetAllCurrencyData(CurrencyType.chf);
-            
+
             return View(chfData);
-        }
-
-        public ActionResult RedirectToCurrencyViewerView()
-        {
-            return RedirectToAction("CurrencyViewer");
-        }
-
-        public ActionResult RedirectToCurrencyPopulator()
-        {
-            return RedirectToAction("CurrencyPopulator");
         }
 
         public ActionResult CurrencyViewer()
@@ -51,22 +26,32 @@ namespace CurrencyValueReporting.Controllers
 
         public ActionResult CurrencyPopulator()
         {
-            var model = new CurrencyPopulatorViewModel();
-            model.AllCurrencies = Enum.GetNames(typeof(CurrencyType)).Select(x => x.ToUpper()).ToList();
-            return View(model);
+            return View();
         }
 
+        public ActionResult GetCurrencyValues(string currencyName)
+        {
+            var service = new CurrencyService();
+            var currencyType = (CurrencyType)Enum.Parse(typeof(CurrencyType), currencyName);
+            var currencyData = service.GetAllCurrencyData(currencyType);
+
+            return View("CurrencyViewer", currencyData);
+        }
+        
+        public ActionResult RedirectToCurrencyViewerView()
+        {
+            return RedirectToAction("CurrencyViewer");
+        }
+
+        public ActionResult RedirectToCurrencyPopulator()
+        {
+            return RedirectToAction("CurrencyPopulator");
+        }
+       
         public ActionResult PopulateDatabase(DateTime dateFrom, DateTime dateTo, string currency)
         {
             var service = new CurrencyService();
-            if (service.PopulateDataSource((CurrencyType)Enum.Parse(typeof(CurrencyType), currency.ToLower()), dateFrom, dateTo))
-            {
-
-            }
-            else
-            {
-
-            }
+            service.PopulateDataSource((CurrencyType)Enum.Parse(typeof(CurrencyType), currency.ToLower()), dateFrom, dateTo);
             return View("Index");
         }
     }
