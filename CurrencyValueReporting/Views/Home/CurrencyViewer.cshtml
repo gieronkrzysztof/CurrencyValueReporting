@@ -1,0 +1,32 @@
+﻿@model List<CurrencyValueReportingApplicationServices.Domain.CurrencyValue>
+
+@{
+    ViewBag.Title = "CurrencyViewer";
+}
+
+<div class="row">
+    <input type="button" value="GBP" onclick="location.href='@Url.Action("GetCurrencyValues", "Home",new { currencyName="gbp" })'" />
+    <br />
+    <input type="button" value="EUR" onclick="location.href='@Url.Action("GetCurrencyValues", "Home",new { currencyName="eur" })'" />
+    <br />
+    <input type="button" value="CHF" onclick="location.href='@Url.Action("GetCurrencyValues", "Home",new { currencyName="chf" })'" />
+    <br />
+    <input type="button" value="USD" onclick="location.href='@Url.Action("GetCurrencyValues", "Home",new { currencyName="usd" })'" />
+    @if (Model != null)
+    {
+        <table id="CurrencyViewerTable">
+            <tr>
+                <td>Data</td>
+                <td>Wartość</td>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.Raw(item.Date.ToString("dd/MM/yyyy"))</td>
+                    <td>@Html.Raw(item.Value.ToString())</td>
+                </tr>
+            }
+        </table>
+    }
+</div>

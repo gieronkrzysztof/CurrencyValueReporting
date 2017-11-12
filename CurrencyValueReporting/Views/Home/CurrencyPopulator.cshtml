@@ -1,0 +1,37 @@
+﻿@model CurrencyValueReporting.Models.CurrencyPopulatorViewModel
+
+@{
+    ViewBag.Title = "CurrencyPopulator";
+}
+
+<div id="ChooseCurrencyDiv" class="row">
+    <input id="PopulateGBPButton" type="button" value="GBP" />
+    <br />
+    <input id="PopulateEURButton" type="button" value="EUR" />
+    <br />
+    <input id="PopulateCHFButton" type="button" value="CHF" />
+    <br />
+    <input id="PopulateUSDButton" type="button" value="USD" />
+</div>
+
+<div id="ChooseDataRangeDiv" style="display: none">
+    <form>
+        <div style="position: relative">
+            <div class="form-group input-group-sm">
+                @Html.Label("Data początkowa")
+                <input class="form-control datepicker row" data-val="true" data-val-date="The field DateFrom must be a date."
+                       data-val-required="Pole DateFrom jest wymagane." id="DateFrom" name="DateFrom" placeholder="Wpisz datę początku notowań" type="text" value="">
+                @Html.Label("Data końcowa")
+                <input class="form-control datepicker row" data-val="true" data-val-date="The field DateTo must be a date."
+                       data-val-required="Pole DateTo jest wymagane." id="DateTo" name="DateTo" placeholder="Wpisz datę początku notowań" type="text" value="">
+            </div>
+        </div>
+        <br />
+        <input id="DoPopulate" type="button" value="ZASIL ŹRODŁO" />
+    </form>
+
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/CurrencyPopulator")
+}

@@ -1,0 +1,11 @@
+﻿@model  IEnumerable<CurrencyValueReportingApplicationServices.Domain.CurrencyValue>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <input type="button" value="ZOBACZ NOTOWANIA" onclick="location.href='@Url.Action("RedirectToCurrencyViewerView", "Home")'" />
+    <br />
+    <input type="button" value="ZASIL ŹRÓDŁO DANYCH" onclick="location.href='@Url.Action("RedirectToCurrencyPopulator", "Home")'" />
+</div>
